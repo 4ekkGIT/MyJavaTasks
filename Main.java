@@ -1,18 +1,34 @@
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
+    static class Animal {
+        protected String name;
+
+        public Animal(String name) {
+            this.name = name;
+        }
+
+        public String greet() {
+            return name + " says hello";
+        }
+    }
+
+    public static class Dog extends Animal {
+        public Dog(String name) {
+            super(name);
+        }
+
+        @Override
+        public String greet() {
+            return name + " says woof";
+        }
+    }
+
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int[] nums = Arrays.stream(sc.nextLine().split(" "))
-                .mapToInt(Integer::parseInt)
-                .toArray();
+        Scanner scanner = new Scanner(System.in);
+        String name = scanner.nextLine();
 
-        int result = Arrays.stream(nums)
-                .filter(x -> x % 2 == 0)
-                .map(x -> x * x)
-                .sum();
-
-        System.out.println(result);
+        Dog dog = new Dog(name);
+        System.out.println(dog.greet());
     }
 }
